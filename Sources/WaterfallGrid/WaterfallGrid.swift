@@ -61,6 +61,7 @@ public struct WaterfallGrid<Data, ID, Content>: View where Data : RandomAccessCo
                         .opacity(self.alignmentGuides[element[keyPath: self.dataId]] != nil ? 1 : 0)
                 }
             }
+            .animation(self.style.animation)
     }
 
     // MARK: - Helpers
