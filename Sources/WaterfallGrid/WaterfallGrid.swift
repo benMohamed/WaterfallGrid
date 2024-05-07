@@ -39,8 +39,10 @@ public struct WaterfallGrid<Data, ID, Content>: View where Data : RandomAccessCo
                                                                                              scrollDirection: self.scrollOptions.direction,
                                                                                              preferences: preferences)
                             DispatchQueue.main.async {
-                                self.alignmentGuides = alignmentGuides
-                                self.gridHeight = gridHeight
+                                withAnimation(self.style.animation) {
+                                    self.alignmentGuides = alignmentGuides
+                                    self.gridHeight = gridHeight
+                                }
                             }
                         }
                     })
