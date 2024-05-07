@@ -21,7 +21,11 @@ public struct WaterfallGrid<Data, ID, Content>: View where Data : RandomAccessCo
     @State private var gridHeight: CGFloat = 0
 
     @State private var alignmentGuides = [AnyHashable: CGPoint]() {
-        didSet { loaded = !oldValue.isEmpty }
+        didSet { 
+            withAnimation(self.style.animation) {
+                loaded = !oldValue.isEmpty
+            }
+        }
     }
     
     public var body: some View {
@@ -61,7 +65,6 @@ public struct WaterfallGrid<Data, ID, Content>: View where Data : RandomAccessCo
                         .opacity(self.alignmentGuides[element[keyPath: self.dataId]] != nil ? 1 : 0)
                 }
             }
-            .animation(self.loaded ? self.style.animation : nil)
     }
 
     // MARK: - Helpers
